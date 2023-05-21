@@ -57,9 +57,10 @@ impl eframe::App for Todo{
 
        ui.heading("Your Todo's");
 
-       let todo_len=self.text_new.len();
+       let mut todo_len=self.text_new.len();
 
        egui::ScrollArea::vertical().show(ui,|ui|{
+
             for t in 0..todo_len{
         
                 ui.horizontal(|ui|{
@@ -70,6 +71,8 @@ impl eframe::App for Todo{
                         println!("delete :{}",t);
                         self.text_new.remove(t);
                         println!("{:?}", self.text_new);
+                        todo_len=self.text_new.len();
+                        println!("the length is {todo_len}");
                     }
 
                 });
